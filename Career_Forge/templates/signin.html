@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+
+
+  
+  
+
+  <title>Career_Forge</title>
+  <link rel="icon" type="image/x-icon" href="{{url_for('static',filename='images/logocf.png')}}">
+    
+  
+  
+  
+  
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  background: #181818;
+  color: #fff;
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+#left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0 100px 0 100px;
+}
+
+#right {
+  flex: 1;
+}
+
+/* Sign In */
+#signin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding-bottom: 1rem;
+}
+
+#signin form {
+  width: 80%;
+  padding-bottom: 3rem;
+}
+
+#signin .logo {
+  margin-bottom: 8vh;
+}
+
+#signin .logo img {
+  width: 300px;
+}
+
+#signin label {
+  font-size: 0.9rem;
+  line-height: 2rem;
+  font-weight: 500;
+}
+
+#signin .text-input {
+  margin-bottom: 1.3rem;
+  width: 100%;
+  border-radius: 2px;
+  background: #181818;
+  border: 1px solid #555;
+  color: #ccc;
+  padding: 0.5rem 1rem;
+  line-height: 1.3rem;
+  border-radius: 10px
+}
+
+#signin .primary-btn {
+  width: 100%;
+  border-radius: 10px
+}
+
+#signin .secondary-btn,
+.or,
+.links {
+  width: 60%;
+}
+
+#signin .links a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+#signin .or {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1.2rem;
+  align-items: center;
+}
+
+#signin .or .bar {
+  flex: auto;
+  border: none;
+  height: 1px;
+  background: #aaa;
+}
+
+#signin .or span {
+  color: #ccc;
+  padding: 0 0.8rem;
+}
+
+/* Showcase */
+#showcase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("{{url_for('static',filename='images/main_page.png')}}") no-repeat center center / cover;
+  height: 100vh;
+  text-align: center;
+}
+
+#showcase .showcase-text {
+  font-size: 3rem;
+  width: 100%;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+#showcase .secondary-btn {
+  width: 60%;
+  margin: auto;
+}
+
+/* Footer */
+#main-footer {
+  color: #ccc;
+  text-align: center;
+  font-size: 0.8rem;
+  max-width: 80%;
+  padding-top: 5rem;
+}
+
+#main-footer a {
+  color: #857EF7;
+  text-decoration: underline;
+}
+
+/* Button */
+.primary-btn {
+  padding: 0.7rem 1rem;
+  height: 2.7rem;
+  display: block;
+  border: 0;
+  border-radius: 2px;
+  font-weight: 500;
+  background: #857EF7;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.primary-btn:hover {
+  background-color: #524cb3;
+}
+
+.secondary-btn {
+  padding: 0.7rem 1rem;
+  height: 2.7rem;
+  display: block;
+  border: 1px solid #f4f4f4;
+  border-radius: 2px;
+  font-weight: 500;
+  background: none;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.secondary-btn:hover {
+  border-color: #ff7b39;
+  color: #ff7b39;
+}
+
+/* Media Queries */
+@media (min-width: 1200px) {
+  #left {
+    flex: 4;
+  }
+
+  #right {
+    flex: 6;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+
+  #right {
+    display: none;
+  }
+
+  #left {
+    justify-content: start;
+    margin-top: 4vh;
+  }
+
+  #signin .logo {
+    margin-bottom: 2vh;
+  }
+
+  #signin .text-input {
+    margin-bottom: 0.7rem;
+  }
+
+  #main-footer {
+    padding-top: 1rem;
+  }
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <div id="wrapper">
+      <div id="left">
+        <div id="signin">
+          <div class="logo">
+            <img src="{{url_for('static',filename='images/WhatsApp_Image_2024-04-27_at_18.33.53_47a54764-removebg-preview.png')}}" alt="Sluralpright" />
+          </div>
+          <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            
+            <div>
+              
+              
+              {{ form.username.label() }}
+              {% if form.username.error %}
+                
+                {{ form.username(class ="text-input") }}
+                <div class="invalid-feedback">
+                  {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+              {% else %}
+                {{ form.username(class ="text-input") }}
+              {% endif %}
+            </div>
+            <div>
+              
+              {{ form.password.label() }}
+              {% if form.password.error %}
+                
+                {{ form.password(class ="text-input") }}
+                <div class="invalid-feedback">
+                  {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+              {% else %}
+                {{ form.password(class ="text-input") }}
+              {% endif %}
+            </div>
+            
+            {{ form.submit(class="primary-btn")}}
+            
+          </form>
+          <div class="">
+            <p>Dont have an account? <a href="{{url_for('signup')}}" style="color: #857EF7;"> Sign Up</a></p>
+          </div>
+         
+        </div>
+        
+      </div>
+      <div id="right">
+        <div id="showcase">
+          <div class="showcase-content">
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+</body>
+
+</html>
